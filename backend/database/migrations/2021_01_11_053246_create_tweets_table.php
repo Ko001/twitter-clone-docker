@@ -17,6 +17,7 @@ class CreateTweetsTable extends Migration
             $table->id();
             $table->string('body', 140);
             $table->foreignId('user_id')->constrained();
+            $table->timestamps();
         });
     }
 
