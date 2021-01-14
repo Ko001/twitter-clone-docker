@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Tweet;
+use App\Http\Requests\CreateTweet;
 use Auth;
 
 class TweetController extends Controller
@@ -15,7 +16,7 @@ class TweetController extends Controller
         return view('tweets.index', ['tweets' => $tweets]);
     }
 
-    public function store(Request $request) {
+    public function store(CreateTweet $request) {
         $tweet = new Tweet();
 
         $tweet->body = $request->body;

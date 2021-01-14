@@ -20,6 +20,10 @@ body {
   margin-left: auto;
 }
 
+.post li {
+  color: red;
+}
+
 .tweets-container {
   max-width: 60%;
   margin: 10px;

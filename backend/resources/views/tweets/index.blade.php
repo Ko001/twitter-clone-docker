@@ -2,6 +2,13 @@
 
 @section('content')
   <div class="tweets-container post">
+      @if($errors->any())
+          <ul >
+            @foreach($errors->all() as $message)
+              <li>{{ $message }}</li>
+            @endforeach
+          </ul>
+      @endif
     <form action="{{ route('tweet.store') }}" method="post">
         @csrf
       <div class="tweet-header ">
