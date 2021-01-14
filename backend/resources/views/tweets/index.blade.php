@@ -5,14 +5,15 @@
   <div class="tweets-container">
   
     <div class="tweet-header ">
-      <div class="edit-nav d-inline d-flex justify-content-end">
-        <div class="tweet-edit d-inline p-2" >編集</div>
-        <div class="tweet-destroy d-inline p-2">削除</div>
+      <a  href="#" class="tweeter-name">ツイ主の名前</a>
+      <div class="edit-nav">
+        <a href="#" class="tweet-edit p-2" >編集</a>
+        <a href="#" class="tweet-destroy p-2">削除</a>
       </div>
-      <div class="tweeter-name d-inline">ツイ主の名前</div>
+      
     </div>
     
-    <div class="tweet-content ">{{ $tweet->body }}</div>
+    <div class="tweet-content "><a>{{ $tweet->body }}</a></div>
     <div class="tweet-time ">{{ $tweet->created_at }}</div>
   </div>
   @endforeach

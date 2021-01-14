@@ -21,23 +21,5 @@
 //   color: $whiteish;
 // } 
 
-.tweets-container {
-  max-width: 60%;
-  margin: 10px;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 10px;
-  border: 3px solid $whiteish;
-  .tweet-header {
-    margin-right: auto;
-    margin-left: auto;
-  }
-  
-  .tweet-content {
-    margin-right: auto;
-    margin-left: auto;
-    min-height: 50px;
-  }
-}
 
 

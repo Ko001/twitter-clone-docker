@@ -1,0 +1,41 @@
+body {
+  color: #4E5155;
+  background-color: #171F2A;
+}
+
+.tweets-container {
+  max-width: 60%;
+  margin: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 10px;
+  border: 1px solid #4E5155;
+}
+
+.tweets-container .tweet-header {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.tweets-container .tweet-header .tweeter-name {
+  display: inline-block;
+  width: 29%;
+}
+
+.tweets-container .tweet-header .edit-nav {
+  display: inline-block;
+  width: 69%;
+  text-align: right;
+}
+
+.tweets-container .tweet-content {
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.tweets-container .tweet-content a {
+  vertical-align: middle;
+}
+
