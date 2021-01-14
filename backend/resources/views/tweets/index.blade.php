@@ -23,7 +23,7 @@
   <div class="tweets-container">
   
     <div class="tweet-header ">
-      <a  href="#" class="tweeter-name">ツイ主の名前</a>
+      <a  href="#" class="tweeter-name">{{ $tweet->user->name }}</a>
       <div class="edit-nav">
         <a href="#" class="tweet-edit p-2" >編集</a>
         <a href="#" class="tweet-destroy p-2">削除</a>

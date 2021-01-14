@@ -40,12 +40,12 @@ body {
 
 .tweets-container .tweet-header .tweeter-name {
   display: inline-block;
-  width: 29%;
+  width: 69%;
 }
 
 .tweets-container .tweet-header .edit-nav {
   display: inline-block;
-  width: 69%;
+  width: 29%;
   text-align: right;
 }
 

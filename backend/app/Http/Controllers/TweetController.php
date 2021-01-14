@@ -11,7 +11,7 @@ class TweetController extends Controller
 {
     public function index()
     {
-        $tweets =Tweet::orderBy('created_at', 'desc')->get();
+        $tweets =Tweet::with('user')->orderBy('tweets.created_at', 'desc')->limit(8)->get();
 
         return view('tweets.index', ['tweets' => $tweets]);
     }
@@ -20,9 +20,8 @@ class TweetController extends Controller
         $tweet = new Tweet();
 
         $tweet->body = $request->body;
-        $tweet->user_id = Auth::id();
 
-        $tweet->save();
+        Auth::user()->tweets()->save($tweet);
 
         return redirect()->route('tweet.top');
     }
