@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => 'auth'], function(){
-    Route::get('/', 'TweetController@index')->name('tweet.index');
+    Route::get('/', 'TweetController@index')->name('tweet.top');
     Route::resource('tweet', 'TweetController');
 });
 

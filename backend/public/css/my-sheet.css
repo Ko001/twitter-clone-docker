@@ -3,6 +3,23 @@ body {
   background-color: #171F2A;
 }
 
+.post .text-box {
+  border: 1px solid #4E5155;
+  margin-bottom: 5px;
+}
+
+.post .text-box p {
+  padding: 3px;
+}
+
+.post .tweet-button {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin-right: 7px;
+  margin-left: auto;
+}
+
 .tweets-container {
   max-width: 60%;
   margin: 10px;
@@ -31,6 +48,7 @@ body {
 .tweets-container .tweet-content {
   margin-right: auto;
   margin-left: auto;
+  width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
 }
