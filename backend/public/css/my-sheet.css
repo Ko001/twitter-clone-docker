@@ -35,7 +35,9 @@ body {
   padding-bottom: 10px;
 }
 
-.tweets-container .tweet-content a {
+.tweets-container .tweet-content p {
+  display: inline-block;
+  margin: 0;
   vertical-align: middle;
 }
 

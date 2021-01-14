@@ -13,7 +13,7 @@
       
     </div>
     
-    <div class="tweet-content "><a>{{ $tweet->body }}</a></div>
+    <div class="tweet-content "><p>{{ $tweet->body }}</p></div>
     <div class="tweet-time ">{{ $tweet->created_at }}</div>
   </div>
   @endforeach
