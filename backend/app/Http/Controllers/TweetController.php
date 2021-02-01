@@ -24,7 +24,7 @@ class TweetController extends Controller
 
         Auth::user()->tweets()->save($tweet);
 
-        return redirect()->route('tweet.top');
+        return redirect()->route('tweets.top');
     }
 
     public function edit(Tweet $tweet) {
@@ -39,6 +39,14 @@ class TweetController extends Controller
         $currentTweet->body = $request->body;
         Auth::user()->tweets()->save($currentTweet);
 
-        return redirect()->route('tweet.index');
+        return redirect()->route('tweets.index');
+    }
+
+    public function destroy(Tweet $tweet) {
+        $currentTweet = Tweet::find($tweet->id);
+
+        $currentTweet->delete();
+
+        return redirect()->route('tweets.index');
     }
 }

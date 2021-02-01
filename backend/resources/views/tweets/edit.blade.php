@@ -10,7 +10,7 @@
             @endforeach
           </ul>
       @endif
-    <form action="{{ route('tweet.update', ['tweet' => $tweet->id]) }}" method="POST">
+    <form action="{{ route('tweets.update', ['tweet' => $tweet->id]) }}" method="POST">
         @csrf
         @method('PUT')
 

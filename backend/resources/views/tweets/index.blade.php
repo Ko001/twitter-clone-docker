@@ -9,13 +9,13 @@
             @endforeach
           </ul>
       @endif
-    <form action="{{ route('tweet.store') }}" method="post">
+    <form action="{{ route('tweets.store') }}" method="post">
         @csrf
       <div class="tweet-header ">
         <p class="tweeter-name">新規投稿</p>
       </div>
       <input type="text" name="body" class="tweet-content text-box">
-      <div class="tweet-button"><button type="submit" class="btn btn-primary">ツイート</button></div>
+      <div class="tweet-button"><button type="submit" class="btn ">ツイート</button></div>
     </form>
   </div>
 
@@ -26,8 +26,17 @@
       <a  href="#" class="tweeter-name">{{ $tweet->user->name }}</a>
       @if($tweet->user_id == Auth::id())
         <div class="edit-nav">
-          <a href="{{ route('tweet.edit', ['tweet' => $tweet->id]) }}" class="tweet-edit p-2" >編集</a>
-          <a href="#" class="tweet-destroy p-2">削除</a>
+          <a href="{{ route('tweets.edit', ['tweet' => $tweet->id]) }}" class="tweet-edit p-2" >編集</a>
+          <form
+            style="display: inline-block;"
+            method="POST"
+            action="{{ route('tweets.destroy', ['tweet' => $tweet->id]) }}"
+        >
+            @csrf
+            @method('DELETE')
+
+            <button class="tweet-destroy p-2 btn-danger">削除</button>
+        </form>
         </div>
       @endif
       
