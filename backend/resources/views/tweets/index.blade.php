@@ -24,10 +24,12 @@
   
     <div class="tweet-header ">
       <a  href="#" class="tweeter-name">{{ $tweet->user->name }}</a>
-      <div class="edit-nav">
-        <a href="#" class="tweet-edit p-2" >編集</a>
-        <a href="#" class="tweet-destroy p-2">削除</a>
-      </div>
+      @if($tweet->user_id == Auth::id())
+        <div class="edit-nav">
+          <a href="{{ route('tweet.edit', ['tweet' => $tweet->id]) }}" class="tweet-edit p-2" >編集</a>
+          <a href="#" class="tweet-destroy p-2">削除</a>
+        </div>
+      @endif
       
     </div>
     
