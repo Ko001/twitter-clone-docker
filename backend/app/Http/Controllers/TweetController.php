@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Tweet;
 use App\Http\Requests\CreateTweet;
+use App\Http\Requests\UpdateTweet;
 use Auth;
 
 class TweetController extends Controller
@@ -24,5 +25,20 @@ class TweetController extends Controller
         Auth::user()->tweets()->save($tweet);
 
         return redirect()->route('tweet.top');
+    }
+
+    public function edit(Tweet $tweet) {
+        $currentTweet = Tweet::find($tweet->id);
+
+        return view('tweets.edit', ['tweet' => $currentTweet]);
+    }
+
+    public function update(UpdateTweet $request, Tweet $tweet) {
+        $currentTweet = Tweet::find($tweet->id);
+
+        $currentTweet->body = $request->body;
+        Auth::user()->tweets()->save($currentTweet);
+
+        return redirect()->route('tweet.index');
     }
 }
