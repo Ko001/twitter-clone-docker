@@ -23,7 +23,7 @@
   <div class="tweets-container">
   
     <div class="tweet-header ">
-      <a  href="#" class="tweeter-name">{{ $tweet->user->name }}</a>
+      <a  href="{{ route('users.show', ['user' => $tweet->user_id]) }}" class="tweeter-name">{{ $tweet->user->name }}</a>
       @if($tweet->user_id == Auth::id())
         <div class="edit-nav">
           <a href="{{ route('tweets.edit', ['tweet' => $tweet->id]) }}" class="tweet-edit p-2" >編集</a>

@@ -19,34 +19,25 @@ class TweetController extends Controller
 
     public function store(CreateTweet $request) {
         $tweet = new Tweet();
-
         $tweet->body = $request->body;
-
         Auth::user()->tweets()->save($tweet);
 
         return redirect()->route('tweets.top');
     }
 
     public function edit(Tweet $tweet) {
-        $currentTweet = Tweet::find($tweet->id);
-
-        return view('tweets.edit', ['tweet' => $currentTweet]);
+        return view('tweets.edit', ['tweet' => $tweet]);
     }
 
     public function update(UpdateTweet $request, Tweet $tweet) {
-        $currentTweet = Tweet::find($tweet->id);
-
-        $currentTweet->body = $request->body;
-        Auth::user()->tweets()->save($currentTweet);
+        $tweet->body = $request->body;
+        Auth::user()->tweets()->save($tweet);
 
         return redirect()->route('tweets.index');
     }
 
     public function destroy(Tweet $tweet) {
-        $currentTweet = Tweet::find($tweet->id);
-
-        $currentTweet->delete();
-
+        $tweet->delete();
         return redirect()->route('tweets.index');
     }
 }
