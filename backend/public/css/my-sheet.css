@@ -6145,7 +6145,7 @@ readers do not read off random characters that represent icons */
 }
 
 body {
-  color: #4E5155;
+  color: #acacac;
   background-color: #171F2A;
 }
 
@@ -6154,7 +6154,7 @@ body {
 }
 
 .post .text-box {
-  border: 1px solid #4E5155;
+  border: 1px solid #acacac;
   margin-bottom: 5px;
 }
 
@@ -6180,7 +6180,7 @@ body {
   margin-right: auto;
   margin-left: auto;
   padding: 10px;
-  border: 1px solid #4E5155;
+  border: 1px solid #acacac;
 }
 
 .tweets-container .tweet-header {

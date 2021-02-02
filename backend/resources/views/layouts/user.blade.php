@@ -76,6 +76,7 @@
         </nav>
 
         <main class="py-4">
+        {{ $user->name }}
             @yield('content')
         </main>
     </div>
