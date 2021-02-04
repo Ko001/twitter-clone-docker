@@ -76,7 +76,14 @@
         </nav>
 
         <main class="py-4">
-        {{ $user->name }}
+        <div class="tweets-container post">
+            <div class="tweet-header ">
+              <p class="tweeter-name">ユーザー情報</p>
+            </div>
+            <p>ユーザー名:
+              {{ $user->name }}
+            </p>
+        </div>
             @yield('content')
         </main>
     </div>
