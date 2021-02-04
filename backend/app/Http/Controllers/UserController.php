@@ -5,6 +5,7 @@ use App\User;
 use App\Tweet;
 use Illuminate\Http\Request;
 use Auth;
+use App\Http\Requests\UpdateUser;
 
 class UserController extends Controller
 {
@@ -20,5 +21,12 @@ class UserController extends Controller
         } else {
             return view('users.edit', ['user' => $user]);
         }
+    }
+
+    public function update(UpdateUser $request, User $user) {
+        $user->name = $request->name;
+        $user->save();
+
+        return redirect()->route('users.show', ['user' => $user]);
     }
 }
