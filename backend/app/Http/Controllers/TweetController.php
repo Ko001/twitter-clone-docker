@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Tweet;
+use App\Comment;
 use App\Http\Requests\CreateTweet;
 use App\Http\Requests\UpdateTweet;
 use Auth;
@@ -17,7 +18,15 @@ class TweetController extends Controller
         return view('tweets.index', ['tweets' => $tweets]);
     }
 
-    public function store(CreateTweet $request) {
+    public function show(Tweet $tweet)
+    {
+        $comments = Comment::with('user')->where('tweet_id', $tweet->id)->orderBy('comments.created_at', 'desc')->limit(8)->get();
+        
+        return view('tweets.show', ['tweet' => $tweet, 'comments' => $comments]);
+    }
+
+    public function store(CreateTweet $request) 
+    {
         $tweet = new Tweet();
         $tweet->body = $request->body;
         Auth::user()->tweets()->save($tweet);
@@ -25,18 +34,21 @@ class TweetController extends Controller
         return redirect()->route('tweets.top');
     }
 
-    public function edit(Tweet $tweet) {
+    public function edit(Tweet $tweet) 
+    {
         return view('tweets.edit', ['tweet' => $tweet]);
     }
 
-    public function update(UpdateTweet $request, Tweet $tweet) {
+    public function update(UpdateTweet $request, Tweet $tweet) 
+    {
         $tweet->body = $request->body;
         Auth::user()->tweets()->save($tweet);
 
         return redirect()->route('tweets.index');
     }
 
-    public function destroy(Tweet $tweet) {
+    public function destroy(Tweet $tweet) 
+    {
         $tweet->delete();
         return redirect()->route('tweets.index');
     }
