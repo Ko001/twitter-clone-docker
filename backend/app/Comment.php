@@ -29,4 +29,8 @@ class Comment extends Model
     {
         return $this->hasMany('App\Like');
     }
+
+    public function isLikedBy($user_id): bool {
+        return Like::where('user_id', $user_id)->where('comment_id', $this->id)->first() !==null;
+    }
 }

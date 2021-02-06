@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Tweet;
 use App\Like;
+use App\Comment;
 use Auth;
 
 class LikeController extends Controller
@@ -31,6 +32,27 @@ class LikeController extends Controller
         return response()->json($param);
     }
     
+    public function commentLike(Request $request)
+    {
+        $alreadyLiked = Like::where([
+                    ['comment_id', $request->comment_id],
+                    ['user_id', Auth::id()]
+                ])->first();
+
+        if(!$alreadyLiked) {
+            $like = new Like();
+            $like->comment_id = $request->comment_id;
+            Auth::user()->likes()->save($like);
+        } else {
+            $alreadyLiked->delete();
+        }
+
+        $comment_likes_count = Comment::withCount('likes')->findOrFail($request->comment_id)->likes_count;
+        $param = [
+            'comment_likes_count' => $comment_likes_count
+        ];
+        return response()->json($param);
+    }
 
     
 }
