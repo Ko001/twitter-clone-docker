@@ -13,7 +13,7 @@ class UserController extends Controller
     public function show(User $user) {
         $followNum = $this->followNum($user->id);
 
-        $tweets = Tweet::where('user_id', $user->id)->orderBy('tweets.created_at', 'desc')->limit(8)->get();
+        $tweets = Tweet::withCount('likes')->where('user_id', $user->id)->orderBy('tweets.created_at', 'desc')->limit(8)->get();
         return view('users.show', ['user' => $user, 'tweets' => $tweets, 'followNum' => $followNum]);
     }
 

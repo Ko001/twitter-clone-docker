@@ -196,7 +196,7 @@ $(function () {
     .done(function (data) {
       $this.toggleClass('followed');
       $('.follower-counter').html(data.follower_count);
-      $('.follow-text').html(data.text);
+      $('.follow-text').toggleClass('btn-outline-primary').toggleClass('btn-primary').html(data.text);
     }) //通信失敗した時の処理
     .fail(function () {
       console.log('fail');
