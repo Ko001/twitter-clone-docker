@@ -88,7 +88,7 @@
     @if (!$comment->isLikedBy(Auth::id()))
         <span class="likes">
             <i class="fas fa-music comment-like-toggle" data-comment-id="{{ $comment->id }}"></i>
-          <span class="like-counter">{{$comment->likes_count}}</span>
+          <span class="comment-like-counter">{{$comment->likes_count}}</span>
         </span><!-- /.likes -->
       @else
         <span class="likes">

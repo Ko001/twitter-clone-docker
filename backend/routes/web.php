@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::post('tweets/like', 'LikeController@tweetLike')->name('tweets.like');
     Route::post('comments/like', 'LikeController@commentLike')->name('comments.like');
+    Route::post('/follow', 'FollowController@follow')->name('follow');
     
 });
 

@@ -81,6 +81,23 @@
         <div class="tweets-container post">
             <div class="tweet-header ">
               <p class="tweeter-name">ユーザー情報</p>
+                @if(!$user->isFollowedBy())
+                <span class="follows">
+                  <span class="follow-toggle follow-text" data-follow-id="{{ $user->id }}">フォローする
+                  </span>
+                </span>
+                @else
+                <span class="follows">
+                    <span class="follow-toggle follow-text followed" data-follow-id="{{ $user->id }}">フォロー中</span>
+                </span>
+                @endif
+              
+              <p class="">フォロー：{{ $followNum['following'] }}</p>
+                <p class="">フォロワー：
+                    <span class="follower-counter">
+                        {{ $followNum['followed'] }}
+                    </span>
+                </p>
               @if($user->id == Auth::id())
               <a href="{{ route('users.edit', ['user' => $user->id]) }}" class="tweet-edit p-2" >ユーザー情報編集</a>
               @endif

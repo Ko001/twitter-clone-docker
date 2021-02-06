@@ -6217,3 +6217,9 @@ body {
   color: pink;
 }
 
+.fas,
+.follows {
+  cursor: hand;
+  cursor: pointer;
+}
+

@@ -29,5 +29,13 @@ class DatabaseSeeder extends Seeder
                         // コメントにいいねを追加
                         $comment->likes()->save(factory(App\Like::class)->make());
                     });
+
+        $followings = factory(App\User::class, 6)
+                    ->create()
+                    ->each( function ($following) {
+                        $follow = factory(App\Follow::class)->make();
+
+                        $following->follows()->save($follow);
+                    });
     }
 }
