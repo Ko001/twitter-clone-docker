@@ -25,6 +25,18 @@
     
     <div class="tweet-content "><p>{{ $tweet->body }}</p></div>
     <div class="tweet-time ">{{ $tweet->created_at }}</div>
+
+    @if (!$tweet->isLikedBy(Auth::id()))
+        <span class="likes">
+            <i class="fas fa-music tweet-like-toggle" data-tweet-id="{{ $tweet->id }}"></i>
+          <span class="like-counter">{{$likeNum}}</span>
+        </span><!-- /.likes -->
+      @else
+        <span class="likes">
+            <i class="fas fa-music heart tweet-like-toggle liked" data-tweet-id="{{ $tweet->id }}"></i>
+          <span class="like-counter">{{$tweet->likes_count}}</span>
+        </span><!-- /.likes -->
+      @endif
   </div>
 
   <div class="tweets-container post">

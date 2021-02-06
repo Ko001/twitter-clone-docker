@@ -21,10 +21,9 @@ Route::group(['middleware' => 'auth'], function(){
         'show', 'edit', 'update'
     ]]);
 
-    Route::post('tweets/{tweet}/likes', 'LikeController@tweetStore')->name('likes.tweet.store');
-    Route::delete('tweets/{tweet}/likes/', 'LikeController@tweetDestroy')->name('likes.tweet.destroy');
-    Route::post('comments/{comment}/likes', 'LikeController@commentStore')->name('likes.comment.store');
-    Route::delete('tweets/{comment}/likes/', 'LikeController@commentDestroy')->name('likes.comment.destroy');
+    Route::post('tweets/like', 'LikeController@tweetLike')->name('tweets.like');
+    Route::post('comments/like', 'LikeController@commentLike')->name('comments.like');
+    
 });
 
 Auth::routes();

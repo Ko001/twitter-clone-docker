@@ -9,25 +9,28 @@ use Auth;
 
 class LikeController extends Controller
 {
-    public function tweetStore(Tweet $tweet)
+    public function tweetLike(Request $request)
     {
-        $like = new Like();
-        $like->tweet_id = $tweet->id;
-        Auth::user()->likes()->save($like);
+        $alreadyLiked = Like::where([
+                    ['tweet_id', $request->tweet_id],
+                    ['user_id', Auth::id()]
+                ])->first();
 
-        return back();
+        if(!$alreadyLiked) {
+            $like = new Like();
+            $like->tweet_id = $request->tweet_id;
+            Auth::user()->likes()->save($like);
+        } else {
+            $alreadyLiked->delete();
+        }
+
+        $tweet_likes_count = Tweet::withCount('likes')->findOrFail($request->tweet_id)->likes_count;
+        $param = [
+            'tweet_likes_count' => $tweet_likes_count
+        ];
+        return response()->json($param);
     }
-
-    public function tweetDestroy(Tweet $tweet)
-    {
-        $like = Like::where([
-            ['tweet_id', $tweet->id],
-            ['user_id', Auth::id()]
-        ]);
-        $like->delete();
-
-        return back();
-    }
+    
 
     
 }

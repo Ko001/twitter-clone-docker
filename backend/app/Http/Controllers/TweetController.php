@@ -21,9 +21,10 @@ class TweetController extends Controller
 
     public function show(Tweet $tweet)
     {
-        $comments = Comment::with('user')->where('tweet_id', $tweet->id)->orderBy('comments.created_at', 'desc')->limit(8)->get();
+        $countLikes = Like::where('tweet_id', $tweet->id)->count();
+        $comments = Comment::with('user')->withCount('likes')->where('tweet_id', $tweet->id)->orderBy('comments.created_at', 'desc')->limit(8)->get();
         
-        return view('tweets.show', ['tweet' => $tweet, 'comments' => $comments]);
+        return view('tweets.show', ['tweet' => $tweet, 'comments' => $comments, 'likeNum' => $countLikes]);
     }
 
     public function store(CreateTweet $request) 
