@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tweet extends Model
+class Comment extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -20,8 +20,8 @@ class Tweet extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function comments()
+    public function tweet()
     {
-        return $this->hasMany('App\Comment');
+        return $this->belongsTo('App\Tweet');
     }
 }

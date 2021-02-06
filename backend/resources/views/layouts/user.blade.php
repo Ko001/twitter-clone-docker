@@ -79,7 +79,9 @@
         <div class="tweets-container post">
             <div class="tweet-header ">
               <p class="tweeter-name">ユーザー情報</p>
+              @if($user->id == Auth::id())
               <a href="{{ route('users.edit', ['user' => $user->id]) }}" class="tweet-edit p-2" >ユーザー情報編集</a>
+              @endif
             </div>
             <p>ユーザー名:
               {{ $user->name }}

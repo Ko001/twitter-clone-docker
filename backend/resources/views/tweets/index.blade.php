@@ -15,7 +15,7 @@
         <p class="tweeter-name">新規投稿</p>
       </div>
       <input type="text" name="body" class="tweet-content text-box">
-      <div class="tweet-button"><button type="submit" class="btn ">ツイート</button></div>
+      <div class="tweet-button"><button type="submit" class="btn btn-primary">ツイート</button></div>
     </form>
   </div>
 
@@ -43,7 +43,12 @@
     </div>
     
     <div class="tweet-content "><p>{{ $tweet->body }}</p></div>
-    <div class="tweet-time ">{{ $tweet->created_at }}</div>
+    <div class="tweet-time ">
+      <p class="">{{ $tweet->created_at }}
+      <a href="{{ route('tweets.show', ['tweet' => $tweet->id]) }}" class="tweet-edit p-2" >コメントする</a>
+      </p>
+    </div>
+    
   </div>
   @endforeach
     
