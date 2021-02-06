@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Tweet;
 use App\Comment;
+use App\Like;
 use App\Http\Requests\CreateTweet;
 use App\Http\Requests\UpdateTweet;
 use Auth;
@@ -13,16 +14,17 @@ class TweetController extends Controller
 {
     public function index()
     {
-        $tweets =Tweet::with('user')->orderBy('tweets.created_at', 'desc')->limit(8)->get();
+        $tweets =Tweet::with('user')->withCount('likes')->orderBy('tweets.created_at', 'desc')->limit(8)->get();
 
         return view('tweets.index', ['tweets' => $tweets]);
     }
 
     public function show(Tweet $tweet)
     {
-        $comments = Comment::with('user')->where('tweet_id', $tweet->id)->orderBy('comments.created_at', 'desc')->limit(8)->get();
+        $countLikes = Like::where('tweet_id', $tweet->id)->count();
+        $comments = Comment::with('user')->withCount('likes')->where('tweet_id', $tweet->id)->orderBy('comments.created_at', 'desc')->limit(8)->get();
         
-        return view('tweets.show', ['tweet' => $tweet, 'comments' => $comments]);
+        return view('tweets.show', ['tweet' => $tweet, 'comments' => $comments, 'likeNum' => $countLikes]);
     }
 
     public function store(CreateTweet $request) 

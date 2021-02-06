@@ -20,6 +20,10 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('users', 'UserController', ['only' => [
         'show', 'edit', 'update'
     ]]);
+
+    Route::post('tweets/like', 'LikeController@tweetLike')->name('tweets.like');
+    Route::post('comments/like', 'LikeController@commentLike')->name('comments.like');
+    
 });
 
 Auth::routes();

@@ -24,4 +24,13 @@ class Tweet extends Model
     {
         return $this->hasMany('App\Comment');
     }
+
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
+
+    public function isLikedBy($user_id): bool {
+        return Like::where('user_id', $user_id)->where('tweet_id', $this->id)->first() !==null;
+    }
 }

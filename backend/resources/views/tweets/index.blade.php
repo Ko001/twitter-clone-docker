@@ -35,7 +35,7 @@
             @csrf
             @method('DELETE')
 
-            <button class="tweet-destroy p-2 btn-danger">削除</button>
+            <button type="submit" class="tweet-destroy p-2 btn-danger">削除</button>
         </form>
         </div>
       @endif
@@ -47,6 +47,19 @@
       <p class="">{{ $tweet->created_at }}
       <a href="{{ route('tweets.show', ['tweet' => $tweet->id]) }}" class="tweet-edit p-2" >コメントする</a>
       </p>
+      
+      @if (!$tweet->isLikedBy(Auth::id()))
+        <span class="likes">
+            <i class="fas fa-music tweet-like-toggle" data-tweet-id="{{ $tweet->id }}"></i>
+          <span class="like-counter">{{$tweet->likes_count}}</span>
+        </span><!-- /.likes -->
+      @else
+        <span class="likes">
+            <i class="fas fa-music heart tweet-like-toggle liked" data-tweet-id="{{ $tweet->id }}"></i>
+          <span class="like-counter">{{$tweet->likes_count}}</span>
+        </span><!-- /.likes -->
+      @endif
+      
     </div>
     
   </div>

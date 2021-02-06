@@ -25,6 +25,18 @@
     
     <div class="tweet-content "><p>{{ $tweet->body }}</p></div>
     <div class="tweet-time ">{{ $tweet->created_at }}</div>
+
+    @if (!$tweet->isLikedBy(Auth::id()))
+        <span class="likes">
+            <i class="fas fa-music tweet-like-toggle" data-tweet-id="{{ $tweet->id }}"></i>
+          <span class="like-counter">{{$likeNum}}</span>
+        </span><!-- /.likes -->
+      @else
+        <span class="likes">
+            <i class="fas fa-music heart tweet-like-toggle liked" data-tweet-id="{{ $tweet->id }}"></i>
+          <span class="like-counter">{{$likeNum}}</span>
+        </span><!-- /.likes -->
+      @endif
   </div>
 
   <div class="tweets-container post">
@@ -72,7 +84,18 @@
     <div class="tweet-time ">
       <p class="">{{ $comment->created_at }}</p>
     </div>
-    
+
+    @if (!$comment->isLikedBy(Auth::id()))
+        <span class="likes">
+            <i class="fas fa-music comment-like-toggle" data-comment-id="{{ $comment->id }}"></i>
+          <span class="like-counter">{{$comment->likes_count}}</span>
+        </span><!-- /.likes -->
+      @else
+        <span class="likes">
+            <i class="fas fa-music heart comment-like-toggle liked" data-comment-id="{{ $comment->id }}"></i>
+          <span class="comment-like-counter">{{$comment->likes_count}}</span>
+        </span><!-- /.likes -->
+      @endif
   </div>
   @endforeach
 
