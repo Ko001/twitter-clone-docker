@@ -47,6 +47,7 @@
       <p class="">{{ $tweet->created_at }}
       <a href="{{ route('tweets.show', ['tweet' => $tweet->id]) }}" class="tweet-edit p-2" >コメントする</a>
       </p>
+      <p class="p-2">{{ $tweet->likes_count}}いいね</p>
     </div>
     
   </div>
