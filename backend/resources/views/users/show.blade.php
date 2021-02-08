@@ -24,7 +24,14 @@
         
       </div>
       
-      <div class="tweet-content "><p>{{ $tweet->body }}</p></div>
+      <div class="tweet-content ">
+        <p>{{ $tweet->body }}</p>
+        @if($tweet->image_path)
+        <div class="image">
+          <img src="{{ asset('storage/image/'. $tweet->image_path) }}" alt="">
+        </div>
+        @endif
+      </div>
       <div class="tweet-time ">{{ $tweet->created_at }}</div>
 
       @if (!$tweet->isLikedBy(Auth::id()))

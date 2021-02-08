@@ -9,12 +9,13 @@
             @endforeach
           </ul>
       @endif
-    <form action="{{ route('tweets.store') }}" method="post">
+    <form action="{{ route('tweets.store') }}" method="post" enctype='multipart/form-data'>
         @csrf
       <div class="tweet-header ">
         <p class="tweeter-name">新規投稿</p>
       </div>
-      <input type="text" name="body" class="tweet-content text-box">
+      <input type="text" name="body" class="tweet-content text-box" value="{{ old('body') }}">
+      <input type="file" name="image" value="{{ old('image') }}">
       <div class="tweet-button"><button type="submit" class="btn btn-primary">ツイート</button></div>
     </form>
   </div>
@@ -42,7 +43,14 @@
       
     </div>
     
-    <div class="tweet-content "><p>{{ $tweet->body }}</p></div>
+    <div class="tweet-content ">
+      <p>{{ $tweet->body }}</p>
+      @if($tweet->image_path)
+      <div class="image">
+        <img src="{{ asset('storage/image/'. $tweet->image_path) }}" alt="">
+      </div>
+      @endif
+    </div>
     <div class="tweet-time ">
       <p class="">{{ $tweet->created_at->format('Y年m月d日 H:i') }}
       <a href="{{ route('tweets.show', ['tweet' => $tweet->id]) }}" class="tweet-edit p-2" >コメントする</a>
