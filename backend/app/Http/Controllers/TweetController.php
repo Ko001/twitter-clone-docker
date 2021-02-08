@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Tweet;
 use App\Comment;
 use App\Like;
@@ -34,8 +35,14 @@ class TweetController extends Controller
 
     public function store(CreateTweet $request) 
     {
+        if( $path = $request->file('image')) {
+            $path = $request->file('image')->store('public/image');
+            $tweet->image_path = basename($path);
+        } 
+
         $tweet = new Tweet();
         $tweet->body = $request->body;
+        
         Auth::user()->tweets()->save($tweet);
 
         return redirect()->route('tweets.top');
@@ -48,6 +55,12 @@ class TweetController extends Controller
 
     public function update(UpdateTweet $request, Tweet $tweet) 
     {
+        if( $path = $request->file('image')) {
+            Storage::delete('public/image/' . $tweet->image_path);
+            $path = $request->file('image')->store('public/image');
+            $tweet->image_path = basename($path);
+        } 
+
         $tweet->body = $request->body;
         Auth::user()->tweets()->save($tweet);
 
@@ -56,6 +69,9 @@ class TweetController extends Controller
 
     public function destroy(Tweet $tweet) 
     {
+        if( $path = $request->file('image')) {
+            Storage::delete('public/image/' . $tweet->image_path);
+        } 
         $tweet->delete();
         return redirect()->route('tweets.index');
     }

@@ -6223,3 +6223,8 @@ body {
   cursor: pointer;
 }
 
+.image img {
+  margin-top: 10px;
+  max-height: 80px;
+}
+
