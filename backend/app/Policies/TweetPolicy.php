@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
 use App\Tweet;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TweetPolicy
@@ -11,31 +11,84 @@ class TweetPolicy
     use HandlesAuthorization;
 
     /**
-     * Create a new policy instance.
+     * Determine whether the user can view any models.
      *
-     * @return void
+     * @param  \App\User  $user
+     * @return mixed
      */
-    public function __construct()
+    public function viewAny(User $user)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can view the model.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Tweet  $tweet
+     * @return mixed
+     */
+    public function view(User $user, Tweet $tweet)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can create models.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function create(User $user)
     {
         //
     }
 
     /**
-     * @param \App\Tweet $tweet
-     * @param \App\User $user
-     * @return bool
+     * Determine whether the user can update the model.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Tweet  $tweet
+     * @return mixed
      */
-    public function isLoggInUser(User $user, Tweet $tweet)
+    public function update(User $user, Tweet $tweet)
     {
-        return $tweet->user_id === $user->id;
+        return $user->id == $tweet->user_id;
     }
 
     /**
-     * @param \App\User $user
-     * @return bool
+     * Determine whether the user can delete the model.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Tweet  $tweet
+     * @return mixed
      */
-    public function create(User $user)
+    public function delete(User $user, Tweet $tweet)
     {
+        return $user->id == $tweet->user_id;
+    }
 
+    /**
+     * Determine whether the user can restore the model.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Tweet  $tweet
+     * @return mixed
+     */
+    public function restore(User $user, Tweet $tweet)
+    {
+        //
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Tweet  $tweet
+     * @return mixed
+     */
+    public function forceDelete(User $user, Tweet $tweet)
+    {
+        //
     }
 }

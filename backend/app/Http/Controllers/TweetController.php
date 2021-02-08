@@ -12,6 +12,11 @@ use Auth;
 
 class TweetController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Tweet::class, 'tweet');
+    }
+
     public function index()
     {
         $tweets =Tweet::with('user')->withCount('likes')->orderBy('tweets.created_at', 'desc')->limit(8)->get();
@@ -38,7 +43,6 @@ class TweetController extends Controller
 
     public function edit(Tweet $tweet) 
     {
-        $this->authorize('isLoggInUser', $tweet);
         return view('tweets.edit', ['tweet' => $tweet]);
     }
 
