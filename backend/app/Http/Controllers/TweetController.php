@@ -70,7 +70,7 @@ class TweetController extends Controller
 
     public function destroy(Tweet $tweet) 
     {
-        if( $path = $tweet->file('image')) {
+        if( $tweet->image_path) {
             Storage::delete('public/image/' . $tweet->image_path);
         } 
         $tweet->delete();
