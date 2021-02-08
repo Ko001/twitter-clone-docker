@@ -11,6 +11,11 @@ use App\Http\Requests\CreateComment;
 
 class CommentController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Comment::class, 'comment');
+    }
+
     public function store(CreateComment $request, Tweet $tweet) 
     {
         $comment = new Comment();
@@ -23,11 +28,15 @@ class CommentController extends Controller
 
     public function edit(Tweet $tweet, Comment $comment)
     {
+        $this->checkRelation($tweet, $comment);
+
         return view('comments.edit', ['tweet' => $tweet, 'comment' => $comment]);
     }
 
     public function update(Tweet $tweet, Comment $comment, UpdateComment $request)
     {
+        $this->checkRelation($tweet, $comment);
+
         $comment->body = $request->body;
         $tweet->comments()->save($comment);
 
@@ -35,7 +44,16 @@ class CommentController extends Controller
     }
     public function destroy(Tweet $tweet, Comment $comment) 
     {
+        $this->checkRelation($tweet, $comment);
+
         $comment->delete();
         return redirect()->route('tweets.show', ['tweet' => $tweet]);
+    }
+
+    private function checkRelation(Tweet $tweet, Comment $comment)
+    {
+        if($tweet->id != $comment->tweet_id) {
+            abort(404);
+        }
     }
 }
