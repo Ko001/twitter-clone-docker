@@ -35,12 +35,13 @@ class TweetController extends Controller
 
     public function store(CreateTweet $request) 
     {
+        $tweet = new Tweet();
+        
         if( $path = $request->file('image')) {
             $path = $request->file('image')->store('public/image');
             $tweet->image_path = basename($path);
         } 
-
-        $tweet = new Tweet();
+        
         $tweet->body = $request->body;
         
         Auth::user()->tweets()->save($tweet);
