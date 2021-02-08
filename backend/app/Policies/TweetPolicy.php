@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use Auth;
 use App\Tweet;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -41,7 +42,7 @@ class TweetPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user;
     }
 
     /**
