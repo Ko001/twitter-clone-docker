@@ -13,8 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/', 'TweetController@index')->name('tweets.top');
+    Route::resource('tweets', 'TweetController');
+    Route::resource('tweets.comments', 'CommentController', ['only' => ['store', 'edit', 'update', 'destroy']]);
+    Route::resource('users', 'UserController', ['only' => [
+        'show', 'edit', 'update'
+    ]]);
+
+    Route::post('tweets/like', 'LikeController@tweetLike')->name('tweets.like');
+    Route::post('comments/like', 'LikeController@commentLike')->name('comments.like');
+    Route::post('/follow', 'FollowController@follow')->name('follow');
+    
 });
 
 Auth::routes();
