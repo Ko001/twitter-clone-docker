@@ -1,4 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/css/my-sheet.css": "/css/my-sheet.css?id=0e16890fad0f636b8572",
+    "/js/like.js": "/js/like.js"
 }
