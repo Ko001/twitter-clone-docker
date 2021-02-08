@@ -38,6 +38,7 @@ class TweetController extends Controller
 
     public function edit(Tweet $tweet) 
     {
+        $this->authorize('isLoggInUser', $tweet);
         return view('tweets.edit', ['tweet' => $tweet]);
     }
 
