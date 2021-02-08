@@ -11,6 +11,11 @@ use App\Http\Requests\CreateComment;
 
 class CommentController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Comment::class, 'comment');
+    }
+
     public function store(CreateComment $request, Tweet $tweet) 
     {
         $comment = new Comment();
