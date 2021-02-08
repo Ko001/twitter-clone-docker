@@ -44,7 +44,7 @@
     
     <div class="tweet-content "><p>{{ $tweet->body }}</p></div>
     <div class="tweet-time ">
-      <p class="">{{ $tweet->created_at }}
+      <p class="">{{ $tweet->created_at->format('Y年m月d日 H:i') }}
       <a href="{{ route('tweets.show', ['tweet' => $tweet->id]) }}" class="tweet-edit p-2" >コメントする</a>
       </p>
       

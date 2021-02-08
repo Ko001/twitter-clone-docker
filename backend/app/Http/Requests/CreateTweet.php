@@ -27,4 +27,11 @@ class CreateTweet extends FormRequest
             'body' => 'required|max:140',
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'body' => 'ツイート'
+        ];
+    }
 }

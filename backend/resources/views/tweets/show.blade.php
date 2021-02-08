@@ -24,7 +24,7 @@
     </div>
     
     <div class="tweet-content "><p>{{ $tweet->body }}</p></div>
-    <div class="tweet-time ">{{ $tweet->created_at }}</div>
+    <div class="tweet-time ">{{ $tweet->created_at->format('Y年m月d日 H:i') }}</div>
 
     @if (!$tweet->isLikedBy(Auth::id()))
         <span class="likes">
@@ -82,7 +82,7 @@
     
     <div class="tweet-content "><p>{{ $comment->body }}</p></div>
     <div class="tweet-time ">
-      <p class="">{{ $comment->created_at }}</p>
+      <p class="">{{ $comment->created_at->format('Y年m月d日 H:i') }}</p>
     </div>
 
     @if (!$comment->isLikedBy(Auth::id()))
