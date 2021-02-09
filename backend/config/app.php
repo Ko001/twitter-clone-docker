@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://127.0.0.1:10082'),
+    'url' => env('APP_URL', 'http://twitter-clone-docker.herokuapp.com'),
 
     'asset_url' => env('ASSET_URL', null),
 
