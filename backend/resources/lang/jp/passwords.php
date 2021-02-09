@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'reset' => 'パスワードがリセットされました。!',
-    'sent' => 'パスワード再設定用のリンクをメールで送りました。!',
-    'throttled' => 'Please wait before retrying.',
+    'reset' => 'パスワードがリセットされました。',
+    'sent' => 'パスワード再設定用のリンクをメールで送りました。',
+    'throttled' => '時間をおいて再度お試しください。',
     'token' => 'This password reset token is invalid.',
     'user' => "登録されていないメールアドレスです。",
 
