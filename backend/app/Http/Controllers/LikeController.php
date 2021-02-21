@@ -16,7 +16,7 @@ class LikeController extends Controller
                     ['tweet_id', $request->tweet_id],
                     ['user_id', Auth::id()]
                 ])->first();
-
+                
         if(!$alreadyLiked) {
             $like = new Like();
             $like->tweet_id = $request->tweet_id;
