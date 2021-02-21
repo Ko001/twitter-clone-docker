@@ -1,3 +1,11 @@
+$("form").submit(function() {
+  var self = this;
+  $(":submit", self).prop("disabled", true);
+  setTimeout(function() {
+    $(":submit", self).prop("disabled", false);
+  }, 10000);
+});
+
 $(function () {
   let like = $('.tweet-like-toggle'); //like-toggleのついたiタグを取得し代入。
   let likeTweetId; //変数を宣言（なんでここで？）

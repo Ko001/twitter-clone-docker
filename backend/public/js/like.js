@@ -93,6 +93,13 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+$("form").submit(function () {
+  var self = this;
+  $(":submit", self).prop("disabled", true);
+  setTimeout(function () {
+    $(":submit", self).prop("disabled", false);
+  }, 10000);
+});
 $(function () {
   var like = $('.tweet-like-toggle'); //like-toggleのついたiタグを取得し代入。
 
